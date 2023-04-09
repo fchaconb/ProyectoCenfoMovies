@@ -127,13 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Categoria.cpp" />
+    <ClCompile Include="listaCategoria.cpp" />
     <ClCompile Include="listaPelicula.cpp" />
+    <ClCompile Include="nodoCategoria.cpp" />
     <ClCompile Include="nodoPelicula.cpp" />
     <ClCompile Include="Pelicula.cpp" />
     <ClCompile Include="ProyectoCenfoMovies.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Categoria.h" />
+    <ClInclude Include="listaCategoria.h" />
     <ClInclude Include="listaPelicula.h" />
+    <ClInclude Include="nodoCategoria.h" />
     <ClInclude Include="nodoPelicula.h" />
     <ClInclude Include="Pelicula.h" />
   </ItemGroup>

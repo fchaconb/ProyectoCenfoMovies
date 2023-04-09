@@ -27,6 +27,15 @@
     <ClCompile Include="listaPelicula.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Categoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodoCategoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listaCategoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pelicula.h">
@@ -36,6 +45,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="listaPelicula.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Categoria.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodoCategoria.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="listaCategoria.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
