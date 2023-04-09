@@ -44,6 +44,21 @@ nodoCategoria* listaCategoria::dirNodo(Categoria c) {
 	return aux;
 }
 
+nodoCategoria* listaCategoria::dirAnterior(Categoria c)
+{
+	nodoCategoria* aux = NULL;
+
+	if (getLargo() > 1) {
+		aux = getCCab();
+		while (aux->getCSgte() != NULL)
+		{
+			if (aux->getCSgte()->getCategoria().esIgual(c.getNombre())) {
+				return aux;
+			}
+		}
+	}
+}
+
 
 bool listaCategoria::esVacia()
 {
@@ -67,8 +82,15 @@ bool listaCategoria::eliminarCategoria(Categoria _categoria) {
 
 			delete aux;
 			eliminado = true;
-		}
-		else {
+		}else {
+			nodoCategoria* ant = dirAnterior(_categoria);
+			if (ant != NULL){
+				aux = ant->getCSgte();
+				ant->setCSgte(aux->getCSgte());
+				setLargo(getLargo() - 1);
+				delete aux;
+				eliminado = true;
+			}
 		}
 	}
 	return eliminado;

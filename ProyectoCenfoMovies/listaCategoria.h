@@ -16,6 +16,7 @@ public:
 	int getLargo();
 
 	nodoCategoria* dirNodo(Categoria);
+	nodoCategoria* dirAnterior(Categoria);
 
 	bool esVacia();
 
