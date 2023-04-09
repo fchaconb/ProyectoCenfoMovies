@@ -127,7 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="listaPelicula.cpp" />
+    <ClCompile Include="nodoPelicula.cpp" />
+    <ClCompile Include="Pelicula.cpp" />
     <ClCompile Include="ProyectoCenfoMovies.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="listaPelicula.h" />
+    <ClInclude Include="nodoPelicula.h" />
+    <ClInclude Include="Pelicula.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
