@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <stdlib.h>
-
 #include "listaPelicula.h"
 
 using namespace std;
@@ -30,6 +29,9 @@ void menu() {
         cout << "(1) Agregar pelicula ascendentemente" << endl;
         cout << "(2) Listar peliculas ascendentemente por nombre" << endl;
         cout << "(3) Listar peliculas descendentemente por nombre" << endl;
+        cout << "(4) Listar peliculas por hilera" << endl;
+        cout << "(5) Listar peliculas por un rango de años" << endl;
+        cout << "(6) Listar peliculas con un menor número de solicitudes" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
