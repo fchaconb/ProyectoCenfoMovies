@@ -131,11 +131,55 @@ void listaPelicula::listarPeliculasHilera(string h){
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
 		do {
-			std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
+			if (aux->getPelicula().getPNombre().find(h) != std::string::npos){
+				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
 				<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
 				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
 	std:cout << "Fin de la lista \n";
 	}
+}
+
+void listaPelicula::listarPeliculasRango(int r1, int r2)
+{
+	if (esVacia())
+		std::cout << "La lista esta vacia.";
+	else {
+		nodoPelicula* aux = getPCab();
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		do {
+			if (r1 <= aux->getPelicula().getPAnnoEstreno() && aux->getPelicula().getPAnnoEstreno() <= r2) {
+				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
+					<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
+					<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+	std:cout << "Fin de la lista \n";
+	}
+}
+
+void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
+{
+	if (esVacia())
+		std::cout << "La lista esta vacia.";
+	else {
+		nodoPelicula* aux = getPCab();
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		do {
+			if (aux->getPelicula().getPSolicitudes() < nSol) {
+				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
+					<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
+					<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+	std:cout << "Fin de la lista \n";
+	}
+}
+
+void listaPelicula::eliminarPeliculasSolicitudInferior(int){
+
 }
