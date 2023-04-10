@@ -133,9 +133,7 @@ void listaCategoria::listarCategorias() {
 Categoria listaCategoria::consultarLista(string pNombre) {
 	if (esVacia()) {
 		std::cout << "La lista está vacía, por favor agregue categorías";
-	}
-	else {
-		bool encontrado = false;
+	}else {
 		nodoCategoria* aux = getCCab();
 		while (aux != NULL) {
 			if (aux->getCategoria().esIgual(pNombre)) {
