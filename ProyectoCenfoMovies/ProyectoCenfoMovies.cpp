@@ -92,7 +92,7 @@ void menu() {
         case 7: {
             cout << "Ingrese el núemro de solicitudes:" << endl;
             cin >> nSolicitudes;
-            //listaPeli->listarPeliculasSolicitudInferior(nSolicitudes);
+            listaPeli->eliminarPeliculasSolicitudInferior(nSolicitudes);
             break;
         }
         case 9: {

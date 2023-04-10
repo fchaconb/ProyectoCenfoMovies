@@ -217,13 +217,17 @@ void listaPelicula::eliminarPeliculasSolicitudInferior(int nSol){
 	if (aux != NULL) {
 		do{
 			if (aux->getPelicula().getPSolicitudes() < nSol) {
+				if (getLargo() == 1) {
+					setPCab(NULL);
+				}
 				if (aux == getPCab()) {
 					setPCab(getPCab()->getPSgte());
-					aux->getPAnte()->setPSgte(aux->getPSgte());
-					aux->getPSgte()->setPAnte(aux->getPAnte());
-				} 
+				}
+				aux->getPAnte()->setPSgte(aux->getPSgte());
+				aux->getPSgte()->setPAnte(aux->getPAnte());
 				delete aux;
 				setLargo(getLargo() - 1);
+				cout << "Pelicula eliminada!";
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
