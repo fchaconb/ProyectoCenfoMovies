@@ -59,14 +59,34 @@ nodoCategoria* listaCategoria::dirAnterior(Categoria c)
 	}
 }
 
-
 bool listaCategoria::esVacia()
 {
 	return cCab == NULL;
 }
 
-bool listaCategoria::agregarCategoria(Categoria)
+bool listaCategoria::agregarCategoria(Categoria c)
 {
+	nodoCategoria* nuevaCat = new nodoCategoria(c);
+	if (esVacia()){
+		setCCab(nuevaCat);
+		setLargo(getLargo() + 1);
+		return true;
+	}else {
+		nodoCategoria* aux = getCCab();
+
+		while (aux != NULL){
+			if (c.getNombre() > aux->getCategoria().getNombre()){
+				nuevaCat->setCSgte(aux->getCSgte());
+				aux->setCSgte(nuevaCat);
+			}else {
+				nuevaCat->setCSgte(aux);
+				setCCab(nuevaCat);
+			}
+			aux = aux->getCSgte();
+		}
+		setLargo(getLargo() + 1);
+		return true;
+	}
 	return false;
 }
 
