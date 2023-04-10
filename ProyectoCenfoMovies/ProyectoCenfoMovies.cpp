@@ -24,8 +24,9 @@ void menu() {
         cout << "              MENU" << endl;
         cout << "----------------------------------" << endl;
         cout << "(1) Agregar pelicula ascendentemente" << endl;
-        cout << "(2) Listar peliculas ascendentemente por nombre" << endl;
-        cout << "(3) Listar peliculas descendentemente por nombre" << endl;
+        cout << "(2) Eliminar pelicula" << endl;
+        cout << "(9) Listar peliculas ascendentemente por nombre" << endl;
+        cout << "(10) Listar peliculas descendentemente por nombre" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
@@ -53,10 +54,19 @@ void menu() {
             break;
         }
         case 2: {
+            cout << "Ingrese los siguientes datos de la pelicula a eliminar" << endl;
+            cout << "Nombre: ";
+            cin >> pNombre;
+            cout << "Anno de estreno: ";
+            cin >> pAnnoEstreno;
+            listaPeli->eliminarPelicula(pNombre, pAnnoEstreno);    
+            break;
+        }
+        case 9: {
             listaPeli->listarPeliculasNombreAsc();
             break;
         }
-        case 3: {
+        case 10: {
             listaPeli->listarPeliculasNombreDesc();
             break;
         }

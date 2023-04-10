@@ -89,6 +89,34 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 	return agregado;
 }
 
+bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
+{
+	bool eliminada = false;
+	if (esVacia()) {
+		cout << "La lista esta vacia. \n";
+		return eliminada;
+	}
+	else {
+		nodoPelicula* actual = getPCab();
+		do {
+			if (actual->getPelicula().getPNombre() == _pNombre && actual->getPelicula().getPAnnoEstreno() == _pAnnoEstreno) {
+				if (actual == getPCab()) {
+					setPCab(getPCab()->getPSgte());
+				}
+				actual->getPAnte()->setPSgte(actual->getPSgte());
+				actual->getPSgte()->setPAnte(actual->getPAnte());
+				delete actual;
+				setLargo(getLargo() - 1);
+				cout << "Pelicula eliminada!";
+				eliminada = true;
+				return eliminada;
+
+			}
+			actual = actual->getPSgte();
+		} while (actual != getPCab());
+	}
+}
+
 void listaPelicula::listarPeliculasNombreAsc()
 {
 	if (esVacia())

@@ -22,6 +22,10 @@ public:
 	bool esVacia();
 
 	bool agregarPelicula(Pelicula);
+	bool eliminarPelicula(string, int);
+	Pelicula consultarPelicula(string, int);
+	bool modificarNombre(string, int, string);
+	bool modificarDirector(string, int, string);
 	void listarPeliculasNombreAsc();
 	void listarPeliculasNombreDesc();
 	void listarPeliculasHilera(string);
