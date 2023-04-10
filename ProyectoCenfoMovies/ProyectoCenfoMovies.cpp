@@ -8,21 +8,23 @@
 
 using namespace std;
 
-int main()
-{
-    menu();
-}
-
 void menu() {
     listaPelicula* listaPeli = new listaPelicula();
     int opc = -1;
-    int dato = 0;
+    int pCodigo;
+    string pNombre;
+    string pDirector;
+    float pCalificacion;
+    int pSolicitudes;
+    int pAnnoEstreno;
+    string pSinopsis;
+
     while (opc != 0) {
         cout << "----------------------------------" << endl;
         cout << "              MENU" << endl;
         cout << "----------------------------------" << endl;
-        cout << "(1) Agregar al inicio" << endl;
-        cout << "(2) Agregar al final " << endl;
+        cout << "(1) Agregar pelicula ascendentemente" << endl;
+        cout << "(2) Listar peliculas ascendentemente por nombre" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
@@ -30,11 +32,27 @@ void menu() {
 
         switch (opc) {
         case 1: {
-           
+            cout << "Ingrese los siguientes datos de la pelicula" << endl;
+            cout << "Codigo: ";
+            cin >> pCodigo;
+            cout << "Nombre de la pelicula: ";
+            cin >> pNombre;
+            cout << "Director: ";
+            cin >> pDirector;
+            cout << "Calificacion: ";
+            cin >> pCalificacion;
+            cout << "Cantidad de solicitudes: ";
+            cin >> pSolicitudes;
+            cout << "Anno de estreno: ";
+            cin >> pAnnoEstreno;
+            cout << "Sinopsis: ";
+            cin >> pSinopsis;
+            Pelicula newPelicula(pCodigo, pNombre, pDirector, pCalificacion, pSolicitudes, pAnnoEstreno, pSinopsis);
+            listaPeli->agregarPelicula(newPelicula);
             break;
         }
         case 2: {
-            
+            listaPeli->listarPeliculasNombreAsc();
             break;
         }
         case 0:
@@ -49,4 +67,9 @@ void menu() {
     }
 
 
+}
+
+int main()
+{
+    menu();
 }

@@ -19,5 +19,9 @@ public:
 	int getLargo();
 	void setLargo(int);
 
+	bool esVacia();
+
+	bool agregarPelicula(Pelicula);
+	void listarPeliculasNombreAsc();
 };
 
