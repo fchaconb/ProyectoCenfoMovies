@@ -23,5 +23,11 @@ public:
 
 	bool agregarPelicula(Pelicula);
 	void listarPeliculasNombreAsc();
+	void listarPeliculasNombreDesc();
+	void listarPeliculasHilera(string);
+	void listarPeliculasRango(int, int);
+	void listarPeliculasSolicitudInferior(int);
+
+	void eliminarPeliculasSolicitudInferior(int);
 };
 

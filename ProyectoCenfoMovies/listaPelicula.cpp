@@ -106,3 +106,23 @@ void listaPelicula::listarPeliculasNombreAsc()
 	}
 
 }
+
+void listaPelicula::listarPeliculasNombreDesc(){
+	
+}
+
+void listaPelicula::listarPeliculasHilera(string h){
+	if (esVacia())
+		std::cout << "La lista esta vacia.";
+	else {
+		nodoPelicula* aux = getPCab();
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		do {
+			std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
+				<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
+				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+	std:cout << "Fin de la lista \n";
+	}
+}
