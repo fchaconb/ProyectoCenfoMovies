@@ -22,6 +22,7 @@ public:
 	bool esVacia();
 
 	bool agregarPelicula(Pelicula);
+
 	void listarPeliculasNombreAsc();
 	void listarPeliculasNombreDesc();
 	void listarPeliculasHilera(string);

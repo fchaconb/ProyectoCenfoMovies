@@ -180,6 +180,21 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 	}
 }
 
-void listaPelicula::eliminarPeliculasSolicitudInferior(int){
+void listaPelicula::eliminarPeliculasSolicitudInferior(int nSol){
+	nodoPelicula* aux = getPCab();
 
+	if (aux != NULL) {
+		do{
+			if (aux->getPelicula().getPSolicitudes() < nSol) {
+				if (aux == getPCab()) {
+					setPCab(getPCab()->getPSgte());
+					aux->getPAnte()->setPSgte(aux->getPSgte());
+					aux->getPSgte()->setPAnte(aux->getPAnte());
+				} 
+				delete aux;
+				setLargo(getLargo() - 1);
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+	}
 }

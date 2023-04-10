@@ -18,6 +18,10 @@ void menu() {
     int pSolicitudes;
     int pAnnoEstreno;
     string pSinopsis;
+    string hilera;
+    int rango1;
+    int rango2;
+    int nSolicitudes;
 
     while (opc != 0) {
         cout << "----------------------------------" << endl;
@@ -58,6 +62,26 @@ void menu() {
         }
         case 3: {
             listaPeli->listarPeliculasNombreDesc();
+            break;
+        }
+        case 4: {
+            cout << "Ingrese la palabra clave:" << endl;
+            cin >> hilera;
+            listaPeli->listarPeliculasHilera(hilera);
+            break;
+        }
+        case 5: {
+            cout << "Ingrese el primer año del rango:" << endl;
+            cin >> rango1;
+            cout << "Ingrese el ultimo año del rango:" << endl;
+            cin >> rango2;
+            listaPeli->listarPeliculasRango(rango1, rango2);
+            break;
+        }
+        case 6: {
+            cout << "Ingrese el núemro de solicitudes:" << endl;
+            cin >> nSolicitudes;
+            listaPeli->listarPeliculasSolicitudInferior(nSolicitudes);
             break;
         }
         case 0:
