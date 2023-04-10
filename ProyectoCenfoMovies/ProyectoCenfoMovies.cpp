@@ -25,6 +25,7 @@ void menu() {
         cout << "----------------------------------" << endl;
         cout << "(1) Agregar pelicula ascendentemente" << endl;
         cout << "(2) Listar peliculas ascendentemente por nombre" << endl;
+        cout << "(3) Listar peliculas descendentemente por nombre" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
@@ -53,6 +54,10 @@ void menu() {
         }
         case 2: {
             listaPeli->listarPeliculasNombreAsc();
+            break;
+        }
+        case 3: {
+            listaPeli->listarPeliculasNombreDesc();
             break;
         }
         case 0:
