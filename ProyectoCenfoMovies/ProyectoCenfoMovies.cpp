@@ -27,12 +27,13 @@ void menu() {
         cout << "              MENU" << endl;
         cout << "----------------------------------" << endl;
         cout << "(1) Agregar pelicula ascendentemente" << endl;
-        cout << "(2) Listar peliculas ascendentemente por nombre" << endl;
-        cout << "(3) Listar peliculas descendentemente por nombre" << endl;
+        cout << "(2) Eliminar pelicula" << endl;
         cout << "(4) Listar peliculas por hilera" << endl;
         cout << "(5) Listar peliculas por un rango de años" << endl;
         cout << "(6) Listar peliculas con un menor número de solicitudes" << endl;
         cout << "(7) Eliminar peliculas con un menor número de solicitudes" << endl;
+        cout << "(9) Listar peliculas ascendentemente por nombre" << endl;
+        cout << "(10) Listar peliculas descendentemente por nombre" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
@@ -68,14 +69,6 @@ void menu() {
             listaPeli->eliminarPelicula(pNombre, pAnnoEstreno);    
             break;
         }
-        case 9: {
-            listaPeli->listarPeliculasNombreAsc();
-            break;
-        }
-        case 10: {
-            listaPeli->listarPeliculasNombreDesc();
-            break;
-        }
         case 4: {
             cout << "Ingrese la palabra clave:" << endl;
             cin >> hilera;
@@ -100,6 +93,14 @@ void menu() {
             cout << "Ingrese el núemro de solicitudes:" << endl;
             cin >> nSolicitudes;
             //listaPeli->listarPeliculasSolicitudInferior(nSolicitudes);
+            break;
+        }
+        case 9: {
+            listaPeli->listarPeliculasNombreAsc();
+            break;
+        }
+        case 10: {
+            listaPeli->listarPeliculasNombreDesc();
             break;
         }
         case 0:

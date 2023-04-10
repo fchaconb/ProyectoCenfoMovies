@@ -100,6 +100,9 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 		nodoPelicula* actual = getPCab();
 		do {
 			if (actual->getPelicula().getPNombre() == _pNombre && actual->getPelicula().getPAnnoEstreno() == _pAnnoEstreno) {
+				if (getLargo() == 1) {
+					setPCab(NULL);
+				}
 				if (actual == getPCab()) {
 					setPCab(getPCab()->getPSgte());
 				}
