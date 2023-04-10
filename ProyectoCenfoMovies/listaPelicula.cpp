@@ -156,7 +156,7 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
 		do {
-			if (aux->getPelicula().getPAnnoEstreno() < nSol) {
+			if (aux->getPelicula().getPSolicitudes() < nSol) {
 				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
 					<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
 					<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
@@ -165,4 +165,8 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 		} while (aux != getPCab());
 	std:cout << "Fin de la lista \n";
 	}
+}
+
+void listaPelicula::eliminarPeliculasSolicitudInferior(int){
+
 }
