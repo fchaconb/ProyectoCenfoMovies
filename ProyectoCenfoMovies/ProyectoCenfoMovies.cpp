@@ -32,6 +32,7 @@ void menu() {
         cout << "(4) Listar peliculas por hilera" << endl;
         cout << "(5) Listar peliculas por un rango de años" << endl;
         cout << "(6) Listar peliculas con un menor número de solicitudes" << endl;
+        cout << "(7) Eliminar peliculas con un menor número de solicitudes" << endl;
         cout << "(0) Finalizar" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
@@ -84,6 +85,12 @@ void menu() {
             cout << "Ingrese el núemro de solicitudes:" << endl;
             cin >> nSolicitudes;
             listaPeli->listarPeliculasSolicitudInferior(nSolicitudes);
+            break;
+        }
+        case 7: {
+            cout << "Ingrese el núemro de solicitudes:" << endl;
+            cin >> nSolicitudes;
+            //listaPeli->listarPeliculasSolicitudInferior(nSolicitudes);
             break;
         }
         case 0:
