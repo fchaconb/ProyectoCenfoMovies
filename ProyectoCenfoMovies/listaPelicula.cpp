@@ -35,6 +35,23 @@ bool listaPelicula::esVacia()
 	return pCab	== NULL;
 }
 
+nodoPelicula* listaPelicula::dirNodo(string _pNombre, int _pAnnoEstreno)
+{
+	bool encontrada = false;
+	nodoPelicula* actual = getPCab();
+	if (!esVacia()) {
+		actual = getPCab();
+		do {
+			if (actual->getPelicula().getPNombre() == _pNombre && actual->getPelicula().getPAnnoEstreno() == _pAnnoEstreno) {
+				encontrada = true;
+			}
+			actual = actual->getPSgte();
+		} while (actual != getPCab() && !encontrada);
+	}
+	if (encontrada) return actual;
+	else return NULL;
+}
+
 bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 {
 	bool agregado = false;
@@ -117,7 +134,25 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 			}
 			actual = actual->getPSgte();
 		} while (actual != getPCab());
+	} return eliminada;
+}
+
+bool listaPelicula::consultarPelicula(string _pNombre, int _pAnnoEstreno)
+{
+	bool encontrada = false;
+	nodoPelicula* actual = dirNodo(_pNombre, _pAnnoEstreno);
+	if (actual != NULL) {
+		encontrada = true;
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << actual->getPelicula().getPCodigo() << " - " << actual->getPelicula().getPNombre() << " - " << actual->getPelicula().getPDirector()
+			<< " - " << actual->getPelicula().getPCalificacion() << " - " << actual->getPelicula().getPSolicitudes()
+			<< " - " << actual->getPelicula().getPAnnoEstreno() << " - " << actual->getPelicula().getPSinopsis();
 	}
+	else
+	{
+		cout << "No se encontro la pelicula.";
+	}
+	return encontrada;
 }
 
 void listaPelicula::listarPeliculasNombreAsc()
@@ -133,7 +168,7 @@ void listaPelicula::listarPeliculasNombreAsc()
 				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	std:cout << "Fin de la lista \n";
+	cout << "Fin de la lista \n";
 	}
 
 }
@@ -151,7 +186,7 @@ void listaPelicula::listarPeliculasNombreDesc()
 				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
 			aux = aux->getPAnte();
 		} while (aux != getPCab()->getPAnte());
-	std:cout << "Fin de la lista \n";
+	cout << "Fin de la lista \n";
 	}
 }
 
@@ -169,7 +204,7 @@ void listaPelicula::listarPeliculasHilera(string h){
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	std:cout << "Fin de la lista \n";
+	cout << "Fin de la lista \n";
 	}
 }
 
@@ -188,7 +223,7 @@ void listaPelicula::listarPeliculasRango(int r1, int r2)
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	std:cout << "Fin de la lista \n";
+	cout << "Fin de la lista \n";
 	}
 }
 
@@ -207,7 +242,7 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	std:cout << "Fin de la lista \n";
+	cout << "Fin de la lista \n";
 	}
 }
 
