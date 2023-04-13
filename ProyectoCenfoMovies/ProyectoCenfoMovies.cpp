@@ -4,12 +4,18 @@
 #include <iostream>
 #include <stdlib.h>
 #include "listaPelicula.h"
+#include "listaCategoria.h"
 
 using namespace std;
 
 void menu() {
+    //Declaracion de las listas
     listaPelicula* listaPeli = new listaPelicula();
+    listaCategoria* listaCat = new listaCategoria();
     int opc = -1;
+    ////////////////////////////////////////////////
+
+    //Declaracion de variables para la lista de peliculas:
     int pCodigo;
     string pNombre;
     string pDirector;
@@ -20,6 +26,10 @@ void menu() {
     string hilera;
     int rango1;
     int rango2;
+
+    //Declaracion de variables para la lista de categorias:
+    string cNombre;
+    int cCantPeli;
 
     while (opc != 0) {
         cout << "----------------------------------" << endl;
@@ -110,6 +120,37 @@ void menu() {
             cout << "Ingrese el numero de solicitudes: ";
             cin >> pSolicitudes;
             listaPeli->eliminarPeliculasSolicitudInferior(pSolicitudes);
+            break;
+        }
+        case 17: {
+            cout << "Ingrese los siguientes datos de la categoria" << endl;
+            cout << "Nombre: ";
+            cin >> cNombre;
+            cout << "Número de peliculas: ";
+            cin >> cCantPeli;
+            Categoria newCategoria(cNombre);
+            newCategoria.setCantPeliculas(cCantPeli);
+            listaCat->agregarCategoria(newCategoria);
+            break;
+        }
+        case 18: {
+            cout << "Escriba el nombre de la categoria que desea eliminar:" << endl;
+            cin >> cNombre;
+            if (listaCat->eliminarCategoria(cNombre)) {
+                cout << "Se ha eliminado la categoria correctamente!";
+            }else {
+                cout << "No se ha podido eliminar la categoria!";
+            }
+            break;
+        }
+        case 19: {
+            listaCat->listarCategorias();
+            break;
+        }
+        case 20: {
+            cout << "Escriba el nombre de la categoria que desea consultar: " << endl;
+            cin >> cNombre;
+            listaCat->consultarLista(cNombre);
             break;
         }
         case 0:

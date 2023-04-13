@@ -21,10 +21,10 @@ public:
 	bool esVacia();
 
 	bool agregarCategoria(Categoria);
-	bool eliminarCategoria(Categoria);
+	bool eliminarCategoria(string);
 
 	void listarCategorias();
-	Categoria consultarLista(string);
+	void consultarLista(string);
 };
 
 
