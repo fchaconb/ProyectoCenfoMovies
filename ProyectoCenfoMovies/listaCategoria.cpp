@@ -73,20 +73,18 @@ bool listaCategoria::agregarCategoria(Categoria c)
 		setLargo(getLargo() + 1);
 		return true;
 	}else {
-		nodoCategoria* newNodo = new nodoCategoria(c);
 			if (c.getNombre() < getCCab()->getCategoria().getNombre()){
-				newNodo->setCSgte(getCCab());
-				setCCab(newNodo);
+				nuevaCat->setCSgte(getCCab());
+				setCCab(nuevaCat);
 				setLargo(getLargo() + 1);
 				return true;
 			}else {
 				nodoCategoria* aux = getCCab();
-				while (aux->getCSgte() !=NULL && c.getNombre()>aux->getCSgte()->getCategoria().getNombre())
-				{
+				while (aux->getCSgte() !=NULL && c.getNombre() > aux->getCSgte()->getCategoria().getNombre()){
 					aux = aux->getCSgte();
 				}
-				newNodo->setCSgte(aux->getCSgte());
-				aux->setCSgte(newNodo);
+				nuevaCat->setCSgte(aux->getCSgte());
+				aux->setCSgte(nuevaCat);
 				setLargo(getLargo() + 1);
 				return true;
 			}
