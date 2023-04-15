@@ -27,6 +27,8 @@ void menu() {
     int rango1;
     int rango2;
 
+    string pNewNombre;
+
     //Declaracion de variables para la lista de categorias:
     string cNombre;
     int cCantPeli;
@@ -38,6 +40,7 @@ void menu() {
         cout << "(1) Agregar pelicula ascendentemente" << endl;
         cout << "(2) Eliminar pelicula" << endl;
         cout << "(3) Consultar informacion de una pelicula" << endl;
+        cout << "(4) Modifica nombre de una pelicula" << endl;
         cout << "(9) Listar peliculas ascendentemente por nombre" << endl;
         cout << "(10) Listar peliculas descendentemente por nombre" << endl;
         cout << "(13) Listar peliculas por hilera" << endl;
@@ -86,6 +89,17 @@ void menu() {
             cout << "Anno de estreno: ";
             cin >> pAnnoEstreno;
             listaPeli->consultarPelicula(pNombre, pAnnoEstreno);
+            break;
+        }
+        case 4: {
+            cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
+            cout << "Nombre: ";
+            cin >> pNombre;
+            cout << "Anno de estreno: ";
+            cin >> pAnnoEstreno;
+            cout << "Nuevo nombre: ";
+            cin >> pNewNombre;
+            listaPeli->modificarNombre(pNombre, pAnnoEstreno, pNewNombre);
             break;
         }
         case 9: {

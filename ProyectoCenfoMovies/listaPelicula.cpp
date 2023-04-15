@@ -161,6 +161,21 @@ bool listaPelicula::consultarPelicula(string _pNombre, int _pAnnoEstreno)
 	return encontrada;
 }
 
+bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _pNewNombre)
+{
+	bool nombreModificado = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		aux->getPelicula().setPNombre(_pNewNombre);
+		nombreModificado = true;
+		cout << "Nombre modificado!";
+	}
+	else { 
+		cout << "No se encontro la pelicula especificada.";
+	}
+	return nombreModificado;
+}
+
 void listaPelicula::listarPeliculasNombreAsc()
 {
 	if (esVacia())
