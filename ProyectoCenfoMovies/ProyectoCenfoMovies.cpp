@@ -32,6 +32,7 @@ void menu() {
     //Declaracion de variables para la lista de categorias:
     string cNombre;
     int cCantPeli;
+    ////////////////////////////////////////////////
 
     while (opc != 0) {
         cout << "----------------------------------" << endl;
@@ -144,7 +145,12 @@ void menu() {
             cin >> cCantPeli;
             Categoria newCategoria(cNombre);
             newCategoria.setCantPeliculas(cCantPeli);
-            listaCat->agregarCategoria(newCategoria);
+            if (listaCat->agregarCategoria(newCategoria)){
+                cout << "Se ha agregado la categoria correctamente!";
+            }else {
+                cout << "No se ha podido agregar la categoria!";
+            }
+            
             break;
         }
         case 18: {
