@@ -20,10 +20,11 @@ public:
 	void setLargo(int);
 
 	bool esVacia();
+	nodoPelicula* dirNodo(string, int);
 
 	bool agregarPelicula(Pelicula);
 	bool eliminarPelicula(string, int);
-	Pelicula consultarPelicula(string, int);
+	bool consultarPelicula(string, int);
 	bool modificarNombre(string, int, string);
 	bool modificarDirector(string, int, string);
 	void listarPeliculasNombreAsc();
