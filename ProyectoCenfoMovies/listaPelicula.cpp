@@ -176,6 +176,21 @@ bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _
 	return nombreModificado;
 }
 
+bool listaPelicula::modificarDirector(string _pNombre, int _pAnnoEstreno, string _pNewDirector)
+{
+	bool directorModificado = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		aux->getPelicula().setPDirector(_pNewDirector);
+		directorModificado = true;
+		cout << "Director modificado!";
+	}
+	else {
+		cout << "No se encontro la pelicula especificada.";
+	}
+	return directorModificado;
+}
+
 void listaPelicula::listarPeliculasNombreAsc()
 {
 	if (esVacia())
