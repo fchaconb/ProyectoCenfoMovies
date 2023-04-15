@@ -67,25 +67,29 @@ bool listaCategoria::esVacia()
 bool listaCategoria::agregarCategoria(Categoria c)
 {
 	nodoCategoria* nuevaCat = new nodoCategoria(c);
+
 	if (esVacia()){
 		setCCab(nuevaCat);
 		setLargo(getLargo() + 1);
 		return true;
 	}else {
-		nodoCategoria* aux = getCCab();
-
-		while (aux != NULL){
-			if (c.getNombre() > aux->getCategoria().getNombre()){
-				nuevaCat->setCSgte(aux->getCSgte());
-				aux->setCSgte(nuevaCat);
+		nodoCategoria* newNodo = new nodoCategoria(c);
+			if (c.getNombre() < getCCab()->getCategoria().getNombre()){
+				newNodo->setCSgte(getCCab());
+				setCCab(newNodo);
+				setLargo(getLargo() + 1);
+				return true;
 			}else {
-				nuevaCat->setCSgte(aux);
-				setCCab(nuevaCat);
+				nodoCategoria* aux = getCCab();
+				while (aux->getCSgte() !=NULL && c.getNombre()>aux->getCSgte()->getCategoria().getNombre())
+				{
+					aux = aux->getCSgte();
+				}
+				newNodo->setCSgte(aux->getCSgte());
+				aux->setCSgte(newNodo);
+				setLargo(getLargo() + 1);
+				return true;
 			}
-			aux = aux->getCSgte();
-		}
-		setLargo(getLargo() + 1);
-		return true;
 	}
 	return false;
 }
