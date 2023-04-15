@@ -72,7 +72,7 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 			getPCab()->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno())) {
 
 		if (getPCab()->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() && getPCab()->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno()) {
-			cout << "La pelicula ya se encuentra en la lista.";
+			cout << "\nLa pelicula ya se encuentra en la lista.";
 			return agregado;
 		}
 		newPeli->setPAnte(getPCab()->getPAnte());
@@ -133,7 +133,7 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 				} 
 				delete aux;
 				setLargo(getLargo() - 1);
-				cout << "Pelicula eliminada!";
+				cout << "\nPelicula eliminada!";
 				eliminada = true;
 				return eliminada;
 
@@ -156,7 +156,7 @@ bool listaPelicula::consultarPelicula(string _pNombre, int _pAnnoEstreno)
 	}
 	else
 	{
-		cout << "No se encontro la pelicula.";
+		cout << "\nNo se encontro la pelicula.";
 	}
 	return encontrada;
 }
@@ -171,10 +171,10 @@ bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _
 		refPelicula.setPNombre(_pNewNombre);
 		aux->setPelicula(refPelicula);
 		nombreModificado = true;
-		cout << "Nombre modificado!";
+		cout << "\nNombre modificado!";
 	}
 	else { 
-		cout << "No se encontro la pelicula especificada.";
+		cout << "\nNo se encontro la pelicula especificada.";
 	}
 	return nombreModificado;
 }
@@ -189,18 +189,90 @@ bool listaPelicula::modificarDirector(string _pNombre, int _pAnnoEstreno, string
 		refPelicula.setPDirector(_pNewDirector);
 		aux->setPelicula(refPelicula);
 		directorModificado = true;
-		cout << "Director modificado!";
+		cout << "\nDirector modificado!";
 	}
 	else {
-		cout << "No se encontro la pelicula especificada.";
+		cout << "\nNo se encontro la pelicula especificada.";
 	}
 	return directorModificado;
+}
+
+bool listaPelicula::modificarCalificacion(string _pNombre, int _pAnnoEstreno, float _pNewCalificacion)
+{
+	bool calificacionModificada = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPCalificacion(_pNewCalificacion);
+		aux->setPelicula(refPelicula);
+		calificacionModificada = true;
+		cout << "\nCalificacion modificada!";
+	}
+	else {
+		cout << "\nNo se encontro la pelicula especificada.";
+	}
+	return calificacionModificada;
+}
+
+bool listaPelicula::modificarSolicitudes(string _pNombre, int _pAnnoEstreno, int _pNewSolicitudes)
+{
+	bool solicitudesModificada = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPSolicitudes(_pNewSolicitudes);
+		aux->setPelicula(refPelicula);
+		solicitudesModificada = true;
+		cout << "\nCantidad de solicitudes modificada!";
+	}
+	else {
+		cout << "\nNo se encontro la pelicula especificada.";
+	}
+	return solicitudesModificada;
+}
+
+bool listaPelicula::modificarAnnoEstreno(string _pNombre, int _pAnnoEstreno, int _pNewAnnoEstreno)
+{
+	bool estrenoModificado = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPAnnoEstreno(_pNewAnnoEstreno);
+		aux->setPelicula(refPelicula);
+		estrenoModificado = true;
+		cout << "\nAnno de estreno modificado!";
+	}
+	else {
+		cout << "\nNo se encontro la pelicula especificada.";
+	}
+	return estrenoModificado;
+}
+
+bool listaPelicula::modificarSinopsis(string _pNombre, int _pAnnoEstreno, string _pNewSinopsis)
+{
+	bool sinopsisModificada = false;
+	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	if (aux != NULL) {
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPSinopsis(_pNewSinopsis);
+		aux->setPelicula(refPelicula);
+		sinopsisModificada = true;
+		cout << "\nSinopsis modificada!";
+	}
+	else {
+		cout << "\nNo se encontro la pelicula especificada.";
+	}
+	return sinopsisModificada;
 }
 
 void listaPelicula::listarPeliculasNombreAsc()
 {
 	if (esVacia())
-		std::cout << "La lista esta vacia.";
+		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
@@ -218,7 +290,7 @@ void listaPelicula::listarPeliculasNombreAsc()
 void listaPelicula::listarPeliculasNombreDesc()
 {
 	if (esVacia())
-		std::cout << "La lista esta vacia.";
+		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab()->getPAnte();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
@@ -234,7 +306,7 @@ void listaPelicula::listarPeliculasNombreDesc()
 
 void listaPelicula::listarPeliculasHilera(string h){
 	if (esVacia())
-		std::cout << "La lista esta vacia.";
+		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
@@ -253,7 +325,7 @@ void listaPelicula::listarPeliculasHilera(string h){
 void listaPelicula::listarPeliculasRango(int r1, int r2)
 {
 	if (esVacia())
-		std::cout << "La lista esta vacia.";
+		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
@@ -272,7 +344,7 @@ void listaPelicula::listarPeliculasRango(int r1, int r2)
 void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 {
 	if (esVacia())
-		std::cout << "La lista esta vacia.";
+		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
 		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
