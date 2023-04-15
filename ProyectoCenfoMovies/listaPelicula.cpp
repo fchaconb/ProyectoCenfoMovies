@@ -166,7 +166,10 @@ bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _
 	bool nombreModificado = false;
 	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
 	if (aux != NULL) {
-		aux->getPelicula().setPNombre(_pNewNombre);
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPNombre(_pNewNombre);
+		aux->setPelicula(refPelicula);
 		nombreModificado = true;
 		cout << "Nombre modificado!";
 	}
@@ -181,7 +184,10 @@ bool listaPelicula::modificarDirector(string _pNombre, int _pAnnoEstreno, string
 	bool directorModificado = false;
 	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
 	if (aux != NULL) {
-		aux->getPelicula().setPDirector(_pNewDirector);
+		Pelicula peliculaModificada = aux->getPelicula();
+		Pelicula& refPelicula = peliculaModificada;
+		refPelicula.setPDirector(_pNewDirector);
+		aux->setPelicula(refPelicula);
 		directorModificado = true;
 		cout << "Director modificado!";
 	}

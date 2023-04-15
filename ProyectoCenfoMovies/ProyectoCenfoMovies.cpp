@@ -112,7 +112,7 @@ void menu() {
             cin >> pAnnoEstreno;
             cout << "Nuevo director: ";
             cin >> pNewDato;
-            listaPeli->modificarNombre(pNombre, pAnnoEstreno, pNewDato);
+            listaPeli->modificarDirector(pNombre, pAnnoEstreno, pNewDato);
             break;
         }
         case 9: {
