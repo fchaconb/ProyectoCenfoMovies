@@ -229,21 +229,21 @@ void menu() {
             cin >> cCantPeli;
             Categoria newCategoria(cNombre);
             newCategoria.setCantPeliculas(cCantPeli);
-            if (listaCat->agregarCategoria(newCategoria)){
-                cout << "Se ha agregado la categoria correctamente!";
-            }else {
-                cout << "No se ha podido agregar la categoria!";
+            if (listaCat->agregarCategoria(newCategoria)) {
+                cout << "\nCategoria agregada a la lista!";
             }
-            
+            else {
+                cout << "\nLa categoria no fue agregada a la lista.";
+            }
             break;
         }
         case 19: {
             cout << "Escriba el nombre de la categoria que desea eliminar: ";
             cin >> cNombre;
             if (listaCat->eliminarCategoria(cNombre)) {
-                cout << "Se ha eliminado la categoria correctamente!";
+                cout << "\nSe ha eliminado la categoria correctamente!";
             }else {
-                cout << "No se ha podido eliminar la categoria!";
+                cout << "\nNo se ha podido eliminar la categoria!";
             }
             break;
         }

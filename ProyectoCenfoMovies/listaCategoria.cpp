@@ -66,8 +66,11 @@ bool listaCategoria::esVacia()
 
 bool listaCategoria::agregarCategoria(Categoria c)
 {
+	if (dirNodo(c) != NULL) {
+		cout << "La categoria ya existe en la lista.";
+		return false;
+	}
 	nodoCategoria* nuevaCat = new nodoCategoria(c);
-
 	if (esVacia()){
 		setCCab(nuevaCat);
 		setLargo(getLargo() + 1);
@@ -125,7 +128,7 @@ void listaCategoria::listarCategorias() {
 	else {
 		nodoCategoria* aux = getCCab();
 		while (aux != NULL) {
-			std::cout << aux->getCategoria().getNombre() << "-";
+			std::cout << aux->getCategoria().getNombre() << "\n";
 			aux = aux->getCSgte();
 		}
 		std::cout << "Final de la lista \n";
@@ -140,7 +143,7 @@ void listaCategoria::consultarLista(string pNombre) {
 		while (aux != NULL) {
 			if (aux->getCategoria().esIgual(pNombre)) {
 				std::cout << "El nombre es: " << aux->getCategoria().getNombre();
-				std::cout << "El número de peliculas es: " << aux->getCategoria().getCantPeliculas();
+				std::cout << "\nEl numero de peliculas es: " << aux->getCategoria().getCantPeliculas();
 			}
 			aux = aux->getCSgte();
 		}
