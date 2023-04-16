@@ -96,7 +96,7 @@ bool listaCategoria::eliminarCategoria(string nCategoria) {
 	bool eliminado = false;
 	if (!esVacia()) {} {
 		nodoCategoria* aux = NULL;
-		if (!getCCab()->getCategoria().esIgual(nCategoria)) {
+		if (getCCab()->getCategoria().getNombre() == nCategoria) {
 			aux = getCCab();
 
 			setCCab(aux->getCSgte());
