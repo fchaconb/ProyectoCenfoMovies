@@ -25,14 +25,22 @@ public:
 	bool agregarPelicula(Pelicula);
 	bool eliminarPelicula(string, int);
 	bool consultarPelicula(string, int);
+
 	bool modificarNombre(string, int, string);
 	bool modificarDirector(string, int, string);
 	bool modificarCalificacion(string, int, float);
 	bool modificarSolicitudes(string, int, int);
 	bool modificarAnnoEstreno(string, int, int);
 	bool modificarSinopsis(string, int, string);
+
 	void listarPeliculasNombreAsc();
 	void listarPeliculasNombreDesc();
+
+	void listarPeliculasAnnoAsc();
+	void ordenarPeliculasAnnoAsc();
+	void listarPeliculas();
+	void listarPeliculasAnnoDesc();
+
 	void listarPeliculasHilera(string);
 	void listarPeliculasRango(int, int);
 	void listarPeliculasSolicitudInferior(int);

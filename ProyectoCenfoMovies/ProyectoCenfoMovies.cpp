@@ -51,6 +51,8 @@ void menu() {
         cout << "(9) Modificar sinopsis de una pelicula" << endl;
         cout << "(10) Listar peliculas ascendentemente por nombre" << endl;
         cout << "(11) Listar peliculas descendentemente por nombre" << endl;
+        cout << "(12) Listar peliculas ascendentemente por anno" << endl;
+        cout << "(13) Listar peliculas descendentemente por anno" << endl;
         cout << "(14) Listar peliculas por hilera" << endl;
         cout << "(15) Listar peliculas por un rango de annos" << endl;
         cout << "(16) Listar peliculas con un menor numero de solicitudes" << endl;
@@ -181,6 +183,14 @@ void menu() {
         }
         case 11: {
             listaPeli->listarPeliculasNombreDesc();
+            break;
+        }
+        case 12: {
+            listaPeli->listarPeliculasAnnoAsc();
+            break;
+        }
+        case 13: {
+            listaPeli->listarPeliculasAnnoDesc();
             break;
         }
         case 14: {

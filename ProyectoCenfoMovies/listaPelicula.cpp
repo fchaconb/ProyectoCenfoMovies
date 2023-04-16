@@ -304,6 +304,93 @@ void listaPelicula::listarPeliculasNombreDesc()
 	}
 }
 
+void listaPelicula::listarPeliculasAnnoAsc()
+{
+	if (esVacia()) {
+		cout << "La lista esta vacia. \n";
+		return;
+	}
+	else {
+		listaPelicula listaOrdenada;
+		nodoPelicula* aux = getPCab();
+		do {
+			nodoPelicula* temp = listaOrdenada.getPCab();
+			nodoPelicula* prev = NULL;
+			while (temp && temp->getPelicula().getPAnnoEstreno() <= aux->getPelicula().getPAnnoEstreno()) {
+				prev = temp;
+				temp = temp->getPSgte();
+			}
+			nodoPelicula* newNode = new nodoPelicula(aux->getPelicula());
+			if (prev) {
+				prev->setPSgte(newNode);
+				newNode->setPAnte(prev);
+			}
+			else {
+				listaOrdenada.setPCab(newNode);
+			}
+			if (temp) {
+				temp->setPAnte(newNode);
+				newNode->setPSgte(temp);
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+
+		// Print the sorted list
+		nodoPelicula* aux2 = listaOrdenada.getPCab();
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		while (aux2 != NULL) {
+			cout << aux2->getPelicula().getPCodigo() << " - " << aux2->getPelicula().getPNombre() << " - " << aux2->getPelicula().getPDirector()
+				<< " - " << aux2->getPelicula().getPCalificacion() << " - " << aux2->getPelicula().getPSolicitudes()
+				<< " - " << aux2->getPelicula().getPAnnoEstreno() << " - " << aux2->getPelicula().getPSinopsis() << "\n";
+			aux2 = aux2->getPSgte();
+		}
+	}
+}
+
+
+void listaPelicula::listarPeliculasAnnoDesc()
+{
+	if (esVacia()) {
+		cout << "La lista esta vacia. \n";
+		return;
+	}
+	else {
+		listaPelicula listaOrdenada;
+		nodoPelicula* aux = getPCab();
+		do {
+			nodoPelicula* temp = listaOrdenada.getPCab();
+			nodoPelicula* prev = NULL;
+			while (temp && temp->getPelicula().getPAnnoEstreno() >= aux->getPelicula().getPAnnoEstreno()) {
+				prev = temp;
+				temp = temp->getPSgte();
+			}
+			nodoPelicula* newNode = new nodoPelicula(aux->getPelicula());
+			if (prev) {
+				prev->setPSgte(newNode);
+				newNode->setPAnte(prev);
+			}
+			else {
+				listaOrdenada.setPCab(newNode);
+			}
+			if (temp) {
+				temp->setPAnte(newNode);
+				newNode->setPSgte(temp);
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+
+		// Print the sorted list
+		nodoPelicula* aux2 = listaOrdenada.getPCab();
+		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		while (aux2 != NULL) {
+			cout << aux2->getPelicula().getPCodigo() << " - " << aux2->getPelicula().getPNombre() << " - " << aux2->getPelicula().getPDirector()
+				<< " - " << aux2->getPelicula().getPCalificacion() << " - " << aux2->getPelicula().getPSolicitudes()
+				<< " - " << aux2->getPelicula().getPAnnoEstreno() << " - " << aux2->getPelicula().getPSinopsis() << "\n";
+			aux2 = aux2->getPSgte();
+		}
+	}
+}
+
 void listaPelicula::listarPeliculasHilera(string h){
 	if (esVacia())
 		std::cout << "\nLa lista esta vacia.";
