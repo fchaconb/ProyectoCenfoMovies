@@ -69,6 +69,8 @@ void menu() {
         cout << "===================================" << endl;
 
         switch (opc) {
+
+        //Funciones de la lista de Peliculas. 
         case 1: {
             cout << "Ingrese los siguientes datos de la pelicula" << endl;
             cout << "Codigo: ";
@@ -207,6 +209,8 @@ void menu() {
             listaPeli->eliminarPeliculasSolicitudInferior(pSolicitudes);
             break;
         }
+        
+        //Funciones de la lista de Categorias. 
         case 18: {
             cout << "Ingrese los siguientes datos de la categoria" << endl;
             cout << "Nombre: ";

@@ -37,6 +37,6 @@ public:
 	void listarPeliculasRango(int, int);
 	void listarPeliculasSolicitudInferior(int);
 
-	void eliminarPeliculasSolicitudInferior(int);
+	bool eliminarPeliculasSolicitudInferior(int);
 };
 
