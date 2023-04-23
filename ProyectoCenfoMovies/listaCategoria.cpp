@@ -99,11 +99,9 @@ bool listaCategoria::eliminarCategoria(string nCategoria) {
 	bool eliminado = false;
 	if (esVacia()) {
 		std::cout << "\nLa lista de categorias esta vacia.";
-		return eliminado;
-	}
-	else {
+	}else {
 		nodoCategoria* aux = NULL;
-		if (getCCab()->getCategoria().getNombre() == nCategoria) {
+		if (getCCab()->getCategoria().getNombre() == nCategoria ) {
 			aux = getCCab();
 
 			setCCab(aux->getCSgte());
