@@ -98,7 +98,7 @@ bool listaCategoria::agregarCategoria(Categoria c)
 bool listaCategoria::eliminarCategoria(string nCategoria) {
 	bool eliminado = false;
 	if (esVacia()) {
-		std::cout << "\nLa lista de categorias esta vacia.\n";
+		std::cout << "\nLa lista de categorias esta vacia.";
 		return eliminado;
 	}
 	else {
@@ -127,7 +127,7 @@ bool listaCategoria::eliminarCategoria(string nCategoria) {
 
 void listaCategoria::listarCategorias() {
 	if (esVacia()) {
-		std::cout << "La lista está vacía, por favor agregue categorías";
+		std::cout << "\nLa lista esta vacia, por favor agregue categorias.";
 	}
 	else {
 		nodoCategoria* aux = getCCab();
@@ -135,18 +135,18 @@ void listaCategoria::listarCategorias() {
 			std::cout << aux->getCategoria().getNombre() << "\n";
 			aux = aux->getCSgte();
 		}
-		std::cout << "Final de la lista \n";
+		std::cout << "\nFinal de la lista \n";
 	}
 }
 
 void listaCategoria::consultarLista(string pNombre) {
 	if (esVacia()) {
-		std::cout << "La lista está vacía, por favor agregue categorías";
+		std::cout << "\nLa lista esta vacia, por favor agregue categorias.";
 	}else {
 		nodoCategoria* aux = getCCab();
 		while (aux != NULL) {
 			if (aux->getCategoria().esIgual(pNombre)) {
-				std::cout << "El nombre es: " << aux->getCategoria().getNombre();
+				std::cout << "\nEl nombre es: " << aux->getCategoria().getNombre();
 				std::cout << "\nEl numero de peliculas es: " << aux->getCategoria().getCantPeliculas();
 			}
 			aux = aux->getCSgte();
