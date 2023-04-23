@@ -49,23 +49,27 @@ void menu() {
         cout << "(7) Modificar cantidad de solicitudes de una pelicula" << endl;
         cout << "(8) Modificar anno de estreno de una pelicula" << endl;
         cout << "(9) Modificar sinopsis de una pelicula" << endl;
-        cout << "(10) Listar peliculas ascendentemente por nombre" << endl;
-        cout << "(11) Listar peliculas descendentemente por nombre" << endl;
-        cout << "(12) Listar peliculas ascendentemente por anno" << endl;
-        cout << "(13) Listar peliculas descendentemente por anno" << endl;
-        cout << "(14) Listar peliculas por hilera" << endl;
-        cout << "(15) Listar peliculas por un rango de annos" << endl;
-        cout << "(16) Listar peliculas con un menor numero de solicitudes" << endl;
-        cout << "(17) Eliminar peliculas con un menor numero de solicitudes" << endl;
-        cout << "" << endl;
+        cout << "(10) Listar peliculas ascendentemente por codigo" << endl;
+        cout << "(11) Listar peliculas descendentemente por codigo" << endl;
+        cout << "(12) Listar peliculas ascendentemente por nombre" << endl;
+        cout << "(13) Listar peliculas descendentemente por nombre" << endl;
+        cout << "(14) Listar peliculas ascendentemente por anno" << endl;
+        cout << "(15) Listar peliculas descendentemente por anno" << endl;
+        cout << "(16) Listar peliculas por hilera" << endl;
+        cout << "(17) Listar peliculas por un rango de annos" << endl;
+        cout << "(18) Listar peliculas con un menor numero de solicitudes" << endl;
+        cout << "(19) Eliminar peliculas con un menor numero de solicitudes" << endl;
+        cout << " " << endl;
         cout << "----------------------------------" << endl;
         cout << "              CATEGORIAS" << endl;
         cout << "----------------------------------" << endl;
-        cout << "(18) Agregar categoria" << endl;
-        cout << "(19) Eliminar categoria" << endl;
-        cout << "(20) Listar categorias" << endl;
-        cout << "(21) Consultar categoria" << endl;
+        cout << "(20) Agregar categoria" << endl;
+        cout << "(21) Eliminar categoria" << endl;
+        cout << "(22) Listar categorias" << endl;
+        cout << "(23) Consultar categoria" << endl;
+        cout << " " << endl;
         cout << "(0) Finalizar" << endl;
+        cout << "\n" << endl;
         cout << "Opcion seleccionada -> ";
         cin >> opc;
         cout << "===================================" << endl;
@@ -103,103 +107,96 @@ void menu() {
             break;
         }
         case 3: {
-            cout << "Ingrese los siguientes datos de la pelicula a consultar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
-            listaPeli->consultarPelicula(pNombre, pAnnoEstreno);
+            cout << "Ingrese el codigo de la pelicula a consultar: ";
+            cin >> pCodigo;
+            listaPeli->consultarPelicula(pCodigo);
             break;
         }
         case 4: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nuevo nombre: ";
             cin >> pNewDatoString;
-            listaPeli->modificarNombre(pNombre, pAnnoEstreno, pNewDatoString);
+            listaPeli->modificarNombre(pCodigo, pNewDatoString);
             break;
         }
         case 5: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nuevo director: ";
             cin >> pNewDatoString;
-            listaPeli->modificarDirector(pNombre, pAnnoEstreno, pNewDatoString);
+            listaPeli->modificarDirector(pCodigo, pNewDatoString);
             break;
         }
         case 6: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nueva calificacion: ";
             cin >> pNewDatoFloat;
-            listaPeli->modificarCalificacion(pNombre, pAnnoEstreno, pNewDatoFloat);
+            listaPeli->modificarCalificacion(pCodigo, pNewDatoFloat);
             break;
         }
         case 7: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nueva cantidad de solicitudes: ";
             cin >> pNewDatoInt;
-            listaPeli->modificarSolicitudes(pNombre, pAnnoEstreno, pNewDatoInt);
+            listaPeli->modificarSolicitudes(pCodigo, pNewDatoInt);
             break;
         }
         case 8: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nuevo anno de estreno: ";
             cin >> pNewDatoInt;
-            listaPeli->modificarAnnoEstreno(pNombre, pAnnoEstreno, pNewDatoInt);
+            listaPeli->modificarAnnoEstreno(pCodigo, pNewDatoInt);
             break;
         }
         case 9: {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
+            cout << "Codigo: ";
+            cin >> pCodigo;
             cout << "Nueva sinopsis: ";
             cin >> pNewDatoString;
-            listaPeli->modificarSinopsis(pNombre, pAnnoEstreno, pNewDatoString);
+            listaPeli->modificarSinopsis(pCodigo, pNewDatoString);
             break;
         }
         case 10: {
-            listaPeli->listarPeliculasNombreAsc();
+            listaPeli->listarPeliculasCodigoAsc();
             break;
         }
         case 11: {
-            listaPeli->listarPeliculasNombreDesc();
+            listaPeli->listarPeliculasCodigoDesc();
             break;
         }
         case 12: {
-            listaPeli->listarPeliculasAnnoAsc();
+            listaPeli->listarPeliculasNombreAsc();
             break;
         }
         case 13: {
-            listaPeli->listarPeliculasAnnoDesc();
+            listaPeli->listarPeliculasNombreDesc();
             break;
         }
         case 14: {
+            listaPeli->listarPeliculasAnnoAsc();
+            break;
+        }
+        case 15: {
+            listaPeli->listarPeliculasAnnoDesc();
+            break;
+        }
+        case 16: {
             cout << "Ingrese la palabra clave: ";
             cin >> hilera;
             listaPeli->listarPeliculasHilera(hilera);
             break;
         }
-        case 15: {
+        case 17: {
             cout << "Ingrese el primer anno del rango: ";
             cin >> rango1;
             cout << "Ingrese el ultimo anno del rango: ";
@@ -207,13 +204,13 @@ void menu() {
             listaPeli->listarPeliculasRango(rango1, rango2);
             break;
         }
-        case 16: {
+        case 18: {
             cout << "Ingrese el numero de solicitudes: ";
             cin >> pSolicitudes;
             listaPeli->listarPeliculasSolicitudInferior(pSolicitudes);
             break;
         }
-        case 17: {
+        case 19: {
             cout << "Ingrese el numero de solicitudes: ";
             cin >> pSolicitudes;
             listaPeli->eliminarPeliculasSolicitudInferior(pSolicitudes);
@@ -221,7 +218,7 @@ void menu() {
         }
         
         //Funciones de la lista de Categorias. 
-        case 18: {
+        case 20: {
             cout << "Ingrese los siguientes datos de la categoria" << endl;
             cout << "Nombre: ";
             cin >> cNombre;
@@ -237,7 +234,7 @@ void menu() {
             }
             break;
         }
-        case 19: {
+        case 21: {
             cout << "Escriba el nombre de la categoria que desea eliminar: ";
             cin >> cNombre;
             if (listaCat->eliminarCategoria(cNombre)) {
@@ -247,11 +244,11 @@ void menu() {
             }
             break;
         }
-        case 20: {
+        case 22: {
             listaCat->listarCategorias();
             break;
         }
-        case 21: {
+        case 23: {
             cout << "Escriba el nombre de la categoria que desea consultar: ";
             cin >> cNombre;
             listaCat->consultarLista(cNombre);

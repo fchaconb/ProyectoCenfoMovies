@@ -97,7 +97,11 @@ bool listaCategoria::agregarCategoria(Categoria c)
 
 bool listaCategoria::eliminarCategoria(string nCategoria) {
 	bool eliminado = false;
-	if (!esVacia()) {} {
+	if (esVacia()) {
+		std::cout << "\nLa lista de categorias esta vacia.\n";
+		return eliminado;
+	}
+	else {
 		nodoCategoria* aux = NULL;
 		if (getCCab()->getCategoria().getNombre() == nCategoria) {
 			aux = getCCab();

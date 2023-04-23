@@ -20,25 +20,26 @@ public:
 	void setLargo(int);
 
 	bool esVacia();
-	nodoPelicula* dirNodo(string, int);
+	nodoPelicula* dirNodo(int);
 
 	bool agregarPelicula(Pelicula);
 	bool eliminarPelicula(string, int);
-	bool consultarPelicula(string, int);
+	bool consultarPelicula(int);
 
-	bool modificarNombre(string, int, string);
-	bool modificarDirector(string, int, string);
-	bool modificarCalificacion(string, int, float);
-	bool modificarSolicitudes(string, int, int);
-	bool modificarAnnoEstreno(string, int, int);
-	bool modificarSinopsis(string, int, string);
+	bool modificarNombre(int, string);
+	bool modificarDirector(int, string);
+	bool modificarCalificacion(int, float);
+	bool modificarSolicitudes(int, int);
+	bool modificarAnnoEstreno(int, int);
+	bool modificarSinopsis(int, string);
+
+	void listarPeliculasCodigoAsc();
+	void listarPeliculasCodigoDesc();
 
 	void listarPeliculasNombreAsc();
 	void listarPeliculasNombreDesc();
 
 	void listarPeliculasAnnoAsc();
-	void ordenarPeliculasAnnoAsc();
-	void listarPeliculas();
 	void listarPeliculasAnnoDesc();
 
 	void listarPeliculasHilera(string);

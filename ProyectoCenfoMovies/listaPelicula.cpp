@@ -35,14 +35,14 @@ bool listaPelicula::esVacia()
 	return pCab	== NULL;
 }
 
-nodoPelicula* listaPelicula::dirNodo(string _pNombre, int _pAnnoEstreno)
+nodoPelicula* listaPelicula::dirNodo(int _pCodigo)
 {
 	bool encontrada = false;
 	nodoPelicula* aux = getPCab();
 	if (!esVacia()) {
 		aux = getPCab();
 		do {
-			if (aux->getPelicula().getPNombre() == _pNombre && aux->getPelicula().getPAnnoEstreno() == _pAnnoEstreno) {
+			if (aux->getPelicula().getPCodigo() == _pCodigo) {
 				encontrada = true;
 			}
 			else {
@@ -64,12 +64,19 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 		getPCab()->setPAnte(getPCab());
 		setLargo(getLargo() + 1);
 		agregado = true;
+		cout << "\nPelicula agregada!!\n";
 		return agregado;
 	}
 
-	if (getPCab()->getPelicula().getPNombre() > newPeli->getPelicula().getPNombre() ||
+	if (getPCab()->getPelicula().getPCodigo() == newPeli->getPelicula().getPCodigo() ||
+		getPCab()->getPelicula().getPNombre() > newPeli->getPelicula().getPNombre() ||
 		(getPCab()->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() &&
 			getPCab()->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno())) {
+
+		if (getPCab()->getPelicula().getPCodigo() == newPeli->getPelicula().getPCodigo()) {
+			cout << "\nEl codigo de pelicula ya esta asignado a otra pelicula.";
+			return agregado;
+		}
 
 		if (getPCab()->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() && getPCab()->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno()) {
 			cout << "\nLa pelicula ya se encuentra en la lista.";
@@ -82,6 +89,7 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 		getPCab()->setPAnte(newPeli);
 		setPCab(newPeli);
 		setLargo(getLargo() + 1);
+		cout << "\nPelicula agregada!!\n";
 		agregado = true;
 		return agregado;
 
@@ -89,16 +97,21 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 	
 	nodoPelicula* aux = getPCab()->getPSgte();
 	while (aux != getPCab() && (aux->getPelicula().getPNombre() < newPeli->getPelicula().getPNombre() ||
-		(aux->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() &&
+		(aux->getPelicula().getPCodigo() == newPeli->getPelicula().getPCodigo() ||
+			aux->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() &&
 			aux->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno()))) {
 
+		if (aux->getPelicula().getPCodigo() == newPeli->getPelicula().getPCodigo()) {
+			cout << "\nEl codigo de pelicula ya esta asignado a otra pelicula.";
+			return agregado;
+		}
+
+		if (aux->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() &&
+			aux->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno()) {
+			cout << "\nLa pelicula ya se encuentra en la lista.";
+			return agregado;
+		}
 		aux = aux->getPSgte();
-	}
-
-	if (aux->getPelicula().getPNombre() == newPeli->getPelicula().getPNombre() &&
-		aux->getPelicula().getPAnnoEstreno() == newPeli->getPelicula().getPAnnoEstreno()) {
-
-		return agregado;
 	}
 
 	newPeli->setPAnte(aux->getPAnte());
@@ -106,7 +119,8 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 	aux->getPAnte()->setPSgte(newPeli);
 	aux->setPAnte(newPeli);
 	setLargo(getLargo() + 1);
-	
+	cout << "\nPelicula agregada!!\n";
+	agregado = true;
 	return agregado;
 }
 
@@ -127,9 +141,9 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 				else {
 					if (aux == getPCab()) {
 						setPCab(getPCab()->getPSgte());
-						aux->getPAnte()->setPSgte(aux->getPSgte());
-						aux->getPSgte()->setPAnte(aux->getPAnte());
 					}
+					aux->getPAnte()->setPSgte(aux->getPSgte());
+					aux->getPSgte()->setPAnte(aux->getPAnte());
 				} 
 				delete aux;
 				setLargo(getLargo() - 1);
@@ -143,16 +157,17 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 	} return eliminada;
 }
 
-bool listaPelicula::consultarPelicula(string _pNombre, int _pAnnoEstreno)
+bool listaPelicula::consultarPelicula(int _pCodigo)
 {
 	bool encontrada = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		encontrada = true;
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
-		std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-			<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
-			<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis();
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
+		std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPDirector()
+			<< " \t " << aux->getPelicula().getPCalificacion() << " \t\t " << aux->getPelicula().getPSolicitudes()
+			<< " \t\t\t " << aux->getPelicula().getPAnnoEstreno() << " \t\t " << aux->getPelicula().getPSinopsis() << "\n";
 	}
 	else
 	{
@@ -161,10 +176,10 @@ bool listaPelicula::consultarPelicula(string _pNombre, int _pAnnoEstreno)
 	return encontrada;
 }
 
-bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _pNewNombre)
+bool listaPelicula::modificarNombre(int _pCodigo, string _pNewNombre)
 {
 	bool nombreModificado = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -179,10 +194,10 @@ bool listaPelicula::modificarNombre(string _pNombre, int _pAnnoEstreno, string _
 	return nombreModificado;
 }
 
-bool listaPelicula::modificarDirector(string _pNombre, int _pAnnoEstreno, string _pNewDirector)
+bool listaPelicula::modificarDirector(int _pCodigo, string _pNewDirector)
 {
 	bool directorModificado = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -197,10 +212,10 @@ bool listaPelicula::modificarDirector(string _pNombre, int _pAnnoEstreno, string
 	return directorModificado;
 }
 
-bool listaPelicula::modificarCalificacion(string _pNombre, int _pAnnoEstreno, float _pNewCalificacion)
+bool listaPelicula::modificarCalificacion(int _pCodigo, float _pNewCalificacion)
 {
 	bool calificacionModificada = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -215,10 +230,10 @@ bool listaPelicula::modificarCalificacion(string _pNombre, int _pAnnoEstreno, fl
 	return calificacionModificada;
 }
 
-bool listaPelicula::modificarSolicitudes(string _pNombre, int _pAnnoEstreno, int _pNewSolicitudes)
+bool listaPelicula::modificarSolicitudes(int _pCodigo, int _pNewSolicitudes)
 {
 	bool solicitudesModificada = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -233,10 +248,10 @@ bool listaPelicula::modificarSolicitudes(string _pNombre, int _pAnnoEstreno, int
 	return solicitudesModificada;
 }
 
-bool listaPelicula::modificarAnnoEstreno(string _pNombre, int _pAnnoEstreno, int _pNewAnnoEstreno)
+bool listaPelicula::modificarAnnoEstreno(int _pCodigo, int _pNewAnnoEstreno)
 {
 	bool estrenoModificado = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -251,10 +266,10 @@ bool listaPelicula::modificarAnnoEstreno(string _pNombre, int _pAnnoEstreno, int
 	return estrenoModificado;
 }
 
-bool listaPelicula::modificarSinopsis(string _pNombre, int _pAnnoEstreno, string _pNewSinopsis)
+bool listaPelicula::modificarSinopsis(int _pCodigo, string _pNewSinopsis)
 {
 	bool sinopsisModificada = false;
-	nodoPelicula* aux = dirNodo(_pNombre, _pAnnoEstreno);
+	nodoPelicula* aux = dirNodo(_pCodigo);
 	if (aux != NULL) {
 		Pelicula peliculaModificada = aux->getPelicula();
 		Pelicula& refPelicula = peliculaModificada;
@@ -269,20 +284,111 @@ bool listaPelicula::modificarSinopsis(string _pNombre, int _pAnnoEstreno, string
 	return sinopsisModificada;
 }
 
+void listaPelicula::listarPeliculasCodigoAsc()
+{
+	if (esVacia()) {
+		cout << "\nLa lista esta vacia. \n";
+		return;
+	}
+	else {
+		listaPelicula listaOrdenada;
+		nodoPelicula* aux = getPCab();
+		do {
+			nodoPelicula* temp = listaOrdenada.getPCab();
+			nodoPelicula* prev = NULL;
+			while (temp && temp->getPelicula().getPCodigo() <= aux->getPelicula().getPCodigo()) {
+				prev = temp;
+				temp = temp->getPSgte();
+			}
+			nodoPelicula* newNode = new nodoPelicula(aux->getPelicula());
+			if (prev) {
+				prev->setPSgte(newNode);
+				newNode->setPAnte(prev);
+			}
+			else {
+				listaOrdenada.setPCab(newNode);
+			}
+			if (temp) {
+				temp->setPAnte(newNode);
+				newNode->setPSgte(temp);
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+
+		// Print the sorted list
+		nodoPelicula* aux2 = listaOrdenada.getPCab();
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
+		while (aux2 != NULL) {
+			cout << aux2->getPelicula().getPCodigo() << " \t " << aux2->getPelicula().getPNombre() << " \t " << aux2->getPelicula().getPDirector()
+				<< " \t " << aux2->getPelicula().getPCalificacion() << " \t\t " << aux2->getPelicula().getPSolicitudes()
+				<< " \t\t\t " << aux2->getPelicula().getPAnnoEstreno() << " \t\t " << aux2->getPelicula().getPSinopsis() << "\n";
+			aux2 = aux2->getPSgte();
+		}
+		cout << "\nFin de la lista \n";
+	}
+}
+
+void listaPelicula::listarPeliculasCodigoDesc()
+{
+	if (esVacia()) {
+		cout << "\nLa lista esta vacia. \n";
+		return;
+	}
+	else {
+		listaPelicula listaOrdenada;
+		nodoPelicula* aux = getPCab();
+		do {
+			nodoPelicula* temp = listaOrdenada.getPCab();
+			nodoPelicula* prev = NULL;
+			while (temp && temp->getPelicula().getPCodigo() >= aux->getPelicula().getPCodigo()) {
+				prev = temp;
+				temp = temp->getPSgte();
+			}
+			nodoPelicula* newNode = new nodoPelicula(aux->getPelicula());
+			if (prev) {
+				prev->setPSgte(newNode);
+				newNode->setPAnte(prev);
+			}
+			else {
+				listaOrdenada.setPCab(newNode);
+			}
+			if (temp) {
+				temp->setPAnte(newNode);
+				newNode->setPSgte(temp);
+			}
+			aux = aux->getPSgte();
+		} while (aux != getPCab());
+
+		// Print the sorted list
+		nodoPelicula* aux2 = listaOrdenada.getPCab();
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
+		while (aux2 != NULL) {
+			cout << aux2->getPelicula().getPCodigo() << " \t " << aux2->getPelicula().getPNombre() << " \t " << aux2->getPelicula().getPDirector()
+				<< " \t " << aux2->getPelicula().getPCalificacion() << " \t\t " << aux2->getPelicula().getPSolicitudes()
+				<< " \t\t\t " << aux2->getPelicula().getPAnnoEstreno() << " \t\t " << aux2->getPelicula().getPSinopsis() << "\n";
+			aux2 = aux2->getPSgte();
+		}
+		cout << "\nFin de la lista \n";
+	}
+}
+
 void listaPelicula::listarPeliculasNombreAsc()
 {
 	if (esVacia())
 		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
 		do {
-			std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-				<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes() 
-				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPDirector()
+				<< " \t " << aux->getPelicula().getPCalificacion() << " \t\t " << aux->getPelicula().getPSolicitudes() 
+				<< " \t\t\t " << aux->getPelicula().getPAnnoEstreno() << " \t\t " << aux->getPelicula().getPSinopsis() << "\n";
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	cout << "Fin de la lista \n";
+	cout << "\nFin de la lista \n";
 	}
 
 }
@@ -293,21 +399,22 @@ void listaPelicula::listarPeliculasNombreDesc()
 		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab()->getPAnte();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
 		do {
-			std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-				<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
-				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+			std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPDirector()
+				<< " \t " << aux->getPelicula().getPCalificacion() << " \t\t " << aux->getPelicula().getPSolicitudes()
+				<< " \t\t\t " << aux->getPelicula().getPAnnoEstreno() << " \t\t " << aux->getPelicula().getPSinopsis() << "\n";
 			aux = aux->getPAnte();
 		} while (aux != getPCab()->getPAnte());
-	cout << "Fin de la lista \n";
+	cout << "\nFin de la lista \n";
 	}
 }
 
 void listaPelicula::listarPeliculasAnnoAsc()
 {
 	if (esVacia()) {
-		cout << "La lista esta vacia. \n";
+		cout << "\nLa lista esta vacia. \n";
 		return;
 	}
 	else {
@@ -337,13 +444,15 @@ void listaPelicula::listarPeliculasAnnoAsc()
 
 		// Print the sorted list
 		nodoPelicula* aux2 = listaOrdenada.getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
 		while (aux2 != NULL) {
-			cout << aux2->getPelicula().getPCodigo() << " - " << aux2->getPelicula().getPNombre() << " - " << aux2->getPelicula().getPDirector()
-				<< " - " << aux2->getPelicula().getPCalificacion() << " - " << aux2->getPelicula().getPSolicitudes()
-				<< " - " << aux2->getPelicula().getPAnnoEstreno() << " - " << aux2->getPelicula().getPSinopsis() << "\n";
+			cout << aux2->getPelicula().getPCodigo() << " \t " << aux2->getPelicula().getPNombre() << " \t " << aux2->getPelicula().getPDirector()
+				<< " \t " << aux2->getPelicula().getPCalificacion() << " \t\t " << aux2->getPelicula().getPSolicitudes()
+				<< " \t\t\t " << aux2->getPelicula().getPAnnoEstreno() << " \t\t " << aux2->getPelicula().getPSinopsis() << "\n";
 			aux2 = aux2->getPSgte();
 		}
+		cout << "\nFin de la lista \n";
 	}
 }
 
@@ -351,7 +460,7 @@ void listaPelicula::listarPeliculasAnnoAsc()
 void listaPelicula::listarPeliculasAnnoDesc()
 {
 	if (esVacia()) {
-		cout << "La lista esta vacia. \n";
+		cout << "\nLa lista esta vacia. \n";
 		return;
 	}
 	else {
@@ -381,13 +490,15 @@ void listaPelicula::listarPeliculasAnnoDesc()
 
 		// Print the sorted list
 		nodoPelicula* aux2 = listaOrdenada.getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
 		while (aux2 != NULL) {
-			cout << aux2->getPelicula().getPCodigo() << " - " << aux2->getPelicula().getPNombre() << " - " << aux2->getPelicula().getPDirector()
-				<< " - " << aux2->getPelicula().getPCalificacion() << " - " << aux2->getPelicula().getPSolicitudes()
-				<< " - " << aux2->getPelicula().getPAnnoEstreno() << " - " << aux2->getPelicula().getPSinopsis() << "\n";
+			cout << aux2->getPelicula().getPCodigo() << " \t " << aux2->getPelicula().getPNombre() << " \t " << aux2->getPelicula().getPDirector()
+				<< " \t " << aux2->getPelicula().getPCalificacion() << " \t\t " << aux2->getPelicula().getPSolicitudes()
+				<< " \t\t\t " << aux2->getPelicula().getPAnnoEstreno() << " \t\t " << aux2->getPelicula().getPSinopsis() << "\n";
 			aux2 = aux2->getPSgte();
 		}
+		cout << "\nFin de la lista \n";
 	}
 }
 
@@ -396,16 +507,15 @@ void listaPelicula::listarPeliculasHilera(string h){
 		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Anno Estreno\n";
+		std::cout << "-----------------------------------------\n";
 		do {
 			if (aux->getPelicula().getPNombre().find(h) != std::string::npos){
-				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-				<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
-				<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+				std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPAnnoEstreno() << "\n";
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	cout << "Fin de la lista \n";
+	cout << "\nFin de la lista \n";
 	}
 }
 
@@ -415,16 +525,17 @@ void listaPelicula::listarPeliculasRango(int r1, int r2)
 		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Director \t Calificacion \t Cant. Solicitudes \t Anno Estreno \t Sinopsis\n";
+		std::cout << "---------------------------------------------------------------------------------------------------------\n";
 		do {
 			if (r1 <= aux->getPelicula().getPAnnoEstreno() && aux->getPelicula().getPAnnoEstreno() <= r2) {
-				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-					<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
-					<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+				std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPDirector()
+					<< " \t " << aux->getPelicula().getPCalificacion() << " \t\t " << aux->getPelicula().getPSolicitudes()
+					<< " \t\t\t " << aux->getPelicula().getPAnnoEstreno() << " \t\t " << aux->getPelicula().getPSinopsis() << "\n";
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	cout << "Fin de la lista \n";
+	cout << "\nFin de la lista \n";
 	}
 }
 
@@ -434,16 +545,15 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 		std::cout << "\nLa lista esta vacia.";
 	else {
 		nodoPelicula* aux = getPCab();
-		std::cout << "Codigo - Nombre - Director - Calificacion - Cant. Solicitudes - Anno Estreno - Sinopsis \n";
+		std::cout << "\nCodigo \t Nombre \t Anno Estreno\n";
+		std::cout << "-----------------------------------------\n";
 		do {
 			if (aux->getPelicula().getPSolicitudes() < nSol) {
-				std::cout << aux->getPelicula().getPCodigo() << " - " << aux->getPelicula().getPNombre() << " - " << aux->getPelicula().getPDirector()
-					<< " - " << aux->getPelicula().getPCalificacion() << " - " << aux->getPelicula().getPSolicitudes()
-					<< " - " << aux->getPelicula().getPAnnoEstreno() << " - " << aux->getPelicula().getPSinopsis() << "\n";
+				std::cout << aux->getPelicula().getPCodigo() << " \t " << aux->getPelicula().getPNombre() << " \t " << aux->getPelicula().getPAnnoEstreno() << "\n";
 			}
 			aux = aux->getPSgte();
 		} while (aux != getPCab());
-	cout << "Fin de la lista \n";
+	cout << "\nFin de la lista \n";
 	}
 }
 
