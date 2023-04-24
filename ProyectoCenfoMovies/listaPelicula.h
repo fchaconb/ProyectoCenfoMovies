@@ -23,7 +23,7 @@ public:
 	nodoPelicula* dirNodo(int);
 
 	bool agregarPelicula(Pelicula);
-	bool eliminarPelicula(string, int);
+	bool eliminarPelicula(int);
 	bool consultarPelicula(int);
 
 	bool modificarNombre(int, string);

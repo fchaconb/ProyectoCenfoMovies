@@ -98,12 +98,9 @@ void menu() {
             break;
         }
         case 2: {
-            cout << "Ingrese los siguientes datos de la pelicula a eliminar" << endl;
-            cout << "Nombre: ";
-            cin >> pNombre;
-            cout << "Anno de estreno: ";
-            cin >> pAnnoEstreno;
-            listaPeli->eliminarPelicula(pNombre, pAnnoEstreno);    
+            cout << "Ingrese el codigo de la pelicula a eliminar: ";
+            cin >> pCodigo;
+            listaPeli->eliminarPelicula(pCodigo);    
             break;
         }
         case 3: {

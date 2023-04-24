@@ -124,7 +124,7 @@ bool listaPelicula::agregarPelicula(Pelicula _pelicula)
 	return agregado;
 }
 
-bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
+bool listaPelicula::eliminarPelicula(int _pCodigo)
 {
 	bool eliminada = false;
 	if (esVacia()) {
@@ -134,7 +134,7 @@ bool listaPelicula::eliminarPelicula(string _pNombre, int _pAnnoEstreno)
 	else {
 		nodoPelicula* aux = getPCab();
 		do {
-			if (aux->getPelicula().getPNombre() == _pNombre && aux->getPelicula().getPAnnoEstreno() == _pAnnoEstreno) {
+			if (aux->getPelicula().getPCodigo() == _pCodigo) {
 				if (getLargo() == 1) {
 					setPCab(NULL);
 				} 
