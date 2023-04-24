@@ -81,22 +81,25 @@ void menu() {
             cout << "Ingrese los siguientes datos de la pelicula" << endl;
             cout << "Codigo: ";
             cin >> pCodigo;
+            cin.ignore(); 
             cout << "Nombre de la pelicula: ";
-            cin >> pNombre;
+            getline(cin, pNombre);
             cout << "Director: ";
-            cin >> pDirector;
+            getline(cin, pDirector);
             cout << "Calificacion: ";
             cin >> pCalificacion;
             cout << "Cantidad de solicitudes: ";
             cin >> pSolicitudes;
             cout << "Anno de estreno: ";
             cin >> pAnnoEstreno;
+            cin.ignore(); 
             cout << "Sinopsis: ";
-            cin >> pSinopsis;
+            getline(cin, pSinopsis);
             Pelicula newPelicula(pCodigo, pNombre, pDirector, pCalificacion, pSolicitudes, pAnnoEstreno, pSinopsis);
             listaPeli->agregarPelicula(newPelicula);
             break;
         }
+
         case 2: {
             cout << "Ingrese el codigo de la pelicula a eliminar: ";
             cin >> pCodigo;
@@ -113,8 +116,9 @@ void menu() {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
             cout << "Codigo: ";
             cin >> pCodigo;
+            cin.ignore();
             cout << "Nuevo nombre: ";
-            cin >> pNewDatoString;
+            getline(cin,pNewDatoString);
             listaPeli->modificarNombre(pCodigo, pNewDatoString);
             break;
         }
@@ -122,8 +126,9 @@ void menu() {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
             cout << "Codigo: ";
             cin >> pCodigo;
+            cin.ignore();
             cout << "Nuevo director: ";
-            cin >> pNewDatoString;
+            getline(cin,pNewDatoString);
             listaPeli->modificarDirector(pCodigo, pNewDatoString);
             break;
         }
@@ -158,8 +163,9 @@ void menu() {
             cout << "Ingrese los siguientes datos de la pelicula a modificar" << endl;
             cout << "Codigo: ";
             cin >> pCodigo;
+            cin.ignore();
             cout << "Nueva sinopsis: ";
-            cin >> pNewDatoString;
+            getline(cin,pNewDatoString);
             listaPeli->modificarSinopsis(pCodigo, pNewDatoString);
             break;
         }
