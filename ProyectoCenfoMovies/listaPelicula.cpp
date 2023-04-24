@@ -567,6 +567,13 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 		nodoPelicula* aux = getPCab();
 		bool sigaEliminando = true;
 		while (sigaEliminando) {
+			if (aux->getPelicula().getPSolicitudes() >= nSol) {
+				aux = aux->getPSgte();
+				if (aux == getPCab()) {
+					sigaEliminando = false;
+				}
+				continue;
+			}
 			bool peliEliminada = false;
 			while (aux->getPelicula().getPSolicitudes() < nSol) {
 				peliEliminada = true;
@@ -574,8 +581,8 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 					delete getPCab();
 					setPCab(NULL);
 					setLargo(0);
-					eliminada = true;
 					cout << "\nPelicula eliminada!";
+					eliminada = true;
 					return eliminada;
 				}
 				else {
@@ -587,9 +594,9 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 					nodoPelicula* temp = aux;
 					aux = aux->getPSgte();
 					delete temp;
+					cout << "\nPelicula eliminada!";
 					setLargo(getLargo() - 1);
 					eliminada = true;
-					cout << "\nPelicula eliminada!";
 				}
 			}
 			if (!peliEliminada) {
@@ -598,14 +605,14 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 			else {
 				sigaEliminando = true;
 			}
-			aux = aux->getPSgte();
 			if (aux == getPCab()) {
 				sigaEliminando = false;
 			}
 		}
-		return eliminada;
 	}
 }
+
+
 
 
 
