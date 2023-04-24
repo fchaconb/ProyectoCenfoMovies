@@ -34,6 +34,7 @@ void menu() {
     //Declaracion de variables para la lista de categorias:
     string cNombre;
     int cCantPeli;
+    string nAtributo;
     ////////////////////////////////////////////////
 
     while (opc != 0) {
@@ -65,8 +66,10 @@ void menu() {
         cout << "----------------------------------" << endl;
         cout << "(20) Agregar categoria" << endl;
         cout << "(21) Eliminar categoria" << endl;
-        cout << "(22) Listar categorias" << endl;
-        cout << "(23) Consultar categoria" << endl;
+        cout << "(22) Modificar nombre de categoria" << endl;
+        cout << "(23) Modificar peliculas de categoria" << endl;
+        cout << "(24) Listar categorias" << endl;
+        cout << "(25) Consultar categoria" << endl;
         cout << " " << endl;
         cout << "(0) Finalizar" << endl;
         cout << "\n" << endl;
@@ -248,10 +251,35 @@ void menu() {
             break;
         }
         case 22: {
-            listaCat->listarCategorias();
+            cout << "Escriba el nombre de la categoria que desea modificar: ";
+            cin >> cNombre;
+            cout << "Escriba el nuevo nombre para la categoria: ";
+            cin >> nAtributo;
+            if (listaCat->modificarNombreCategoria(cNombre, nAtributo)){
+                cout << "\nSe ha modificado el nombre correctamente!";
+            }else {
+                cout << "\nNo se ha podido modificar la categoria!";
+            }
             break;
         }
         case 23: {
+            cout << "Escriba el nombre de la categoria que desea modificar: ";
+            cin >> cNombre;
+            cout << "Escriba la nueva cantidad para la categoria: ";
+            cin >> cCantPeli;
+            if (listaCat->modificarCantPeliculasCategoria(cNombre,cCantPeli)) {
+                cout << "\nSe ha modificado el nombre correctamente!";
+            }
+            else {
+                cout << "\nNo se ha podido modificar la categoria!";
+            }
+            break;
+        }
+        case 24: {
+            listaCat->listarCategorias();
+            break;
+        }
+        case 25: {
             cout << "Escriba el nombre de la categoria que desea consultar: ";
             cin >> cNombre;
             listaCat->consultarLista(cNombre);

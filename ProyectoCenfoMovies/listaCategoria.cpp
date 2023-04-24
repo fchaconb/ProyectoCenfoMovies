@@ -95,6 +95,45 @@ bool listaCategoria::agregarCategoria(Categoria c)
 	return false;
 }
 
+bool listaCategoria::modificarNombreCategoria(string nCategoria, string nNombre)
+{
+	if (esVacia()){
+		return false;
+	}
+	else {
+		nodoCategoria* aux = dirNodo(nCategoria);
+		if (aux != NULL){
+			Categoria catMod = aux->getCategoria();
+			Categoria& refCat = catMod;
+			refCat.setNombre(nNombre);
+			aux->setCategoria(refCat);
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+}
+
+bool listaCategoria::modificarCantPeliculasCategoria(string nCategoria, int nCant) {
+	if (esVacia()) {
+		return false;
+	}
+	else {
+		nodoCategoria* aux = dirNodo(nCategoria);
+		if (aux != NULL) {
+			Categoria catMod = aux->getCategoria();
+			Categoria& refCat = catMod;
+			refCat.setCantPeliculas(nCant);
+			aux->setCategoria(refCat);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
 bool listaCategoria::eliminarCategoria(string nCategoria) {
 	bool eliminado = false;
 	if (esVacia()) {
@@ -130,7 +169,7 @@ void listaCategoria::listarCategorias() {
 	else {
 		nodoCategoria* aux = getCCab();
 		while (aux != NULL) {
-			std::cout << aux->getCategoria().getNombre() << "\n";
+			std::cout << aux->getCategoria().getNombre() << " (" << aux->getCategoria().getCantPeliculas() << ")" << "\n";
 			aux = aux->getCSgte();
 		}
 		std::cout << "\nFinal de la lista \n";

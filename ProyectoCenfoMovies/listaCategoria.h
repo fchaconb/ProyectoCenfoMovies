@@ -21,6 +21,8 @@ public:
 	bool esVacia();
 
 	bool agregarCategoria(Categoria);
+	bool modificarNombreCategoria(string, string);
+	bool modificarCantPeliculasCategoria(string, int);
 	bool eliminarCategoria(string);
 
 	void listarCategorias();
