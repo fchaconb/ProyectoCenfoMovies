@@ -559,6 +559,7 @@ void listaPelicula::listarPeliculasSolicitudInferior(int nSol)
 
 bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 	bool eliminada = false;
+	bool peliEliminada = false;
 	if (esVacia()) {
 		cout << "La lista esta vacia. \n";
 		return eliminada;
@@ -574,29 +575,30 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 				}
 				continue;
 			}
-			bool peliEliminada = false;
-			while (aux->getPelicula().getPSolicitudes() < nSol) {
-				peliEliminada = true;
-				if (getLargo() == 1) {
-					delete getPCab();
-					setPCab(NULL);
-					setLargo(0);
-					cout << "\nPelicula eliminada!";
-					eliminada = true;
-					return eliminada;
-				}
-				else {
-					if (aux == getPCab()) {
-						setPCab(getPCab()->getPSgte());
+			else {
+				while (aux->getPelicula().getPSolicitudes() < nSol) {
+					peliEliminada = true;
+					if (getLargo() == 1) {
+						delete getPCab();
+						setPCab(NULL);
+						setLargo(0);
+						cout << "\nPelicula eliminada!";
+						eliminada = true;
+						return eliminada;
 					}
-					aux->getPAnte()->setPSgte(aux->getPSgte());
-					aux->getPSgte()->setPAnte(aux->getPAnte());
-					nodoPelicula* temp = aux;
-					aux = aux->getPSgte();
-					delete temp;
-					cout << "\nPelicula eliminada!";
-					setLargo(getLargo() - 1);
-					eliminada = true;
+					else {
+						if (aux == getPCab()) {
+							setPCab(getPCab()->getPSgte());
+						}
+						aux->getPAnte()->setPSgte(aux->getPSgte());
+						aux->getPSgte()->setPAnte(aux->getPAnte());
+						nodoPelicula* temp = aux;
+						aux = aux->getPSgte();
+						delete temp;
+						cout << "\nPelicula eliminada!";
+						setLargo(getLargo() - 1);
+						eliminada = true;
+					}
 				}
 			}
 			if (!peliEliminada) {
@@ -609,7 +611,7 @@ bool listaPelicula::eliminarPeliculasSolicitudInferior(int nSol) {
 				sigaEliminando = false;
 			}
 		}
-	}
+	} return eliminada;
 }
 
 
